@@ -1,10 +1,10 @@
-# fuzzup
+# fuzzup Version 1.0
 
 tool for fuzzing websites 
 
 * language = python
 
-* OS = linux , mac : terminal 
+* OS = linux , mac , windows 
 
 
 
@@ -12,7 +12,8 @@ tool for fuzzing websites
 
 * git clone https://github.com/mrhack125/fuzzup
 * cd fuzzup
-* python3 fuzzup [target address] [wordlist]
+* python3 fuzzup.py [target address] [wordlist]
+* HELP : python3 fuzzup.py -h
 
 
 # TIP

@@ -1,7 +1,10 @@
+from audioop import add
 import sys , requests
+from urllib.parse import urlparse
+from typing import final
 from colorama import Fore
 print()
-print(Fore.LIGHTYELLOW_EX + '[#]'+ Fore.LIGHTWHITE_EX+' created by mrhack125 ... Version = 1.0')
+print(Fore.LIGHTYELLOW_EX + '[#]'+ Fore.LIGHTWHITE_EX+' created by mrhack125 ... Version = 1.1')
 print()
 address = sys.argv[1]
 if address == '-h':
@@ -20,7 +23,10 @@ def fuzzing():
     save = input(Fore.LIGHTYELLOW_EX + '[?]' + Fore.LIGHTWHITE_EX + 'Do you like Save it ? (Y , N , FY)' + Fore.LIGHTWHITE_EX)
     for line in open(wordlist):
         line = line.strip("\n")
-        fuz = address + '/' + line
+        if address[-1] == '/':
+            fuz = address + line
+        else:
+            fuz = address + '/' + line
         fuzz = requests.get(fuz)
         if save == 'FY' or save == 'fy':
             if fuzz.status_code == 200:

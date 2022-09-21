@@ -10,10 +10,14 @@ address = sys.argv[1]
 if address == '-h':
     print()
     print('''help:
-                fuzzup.py [address] [wordlist]
+                fuzzup.py [address] [wordlist] [option]
                 Y = yes , save in one file : Result.txt
                 N = no , dont save
-                FY = yes , save and filter by status-code : Result-200.txt , Result-404.txt , Result-301.txt , Result-order.txt''') 
+                FY = yes , save and filter by status-code : Result-200.txt , Result-404.txt , Result-301.txt , Result-order.txt
+                
+             Options:
+                dir = Find only Directorys
+                normal = normal Fuzzing''') 
     print()
     sys.exit()
 wordlist = sys.argv[2]    

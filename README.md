@@ -22,4 +22,4 @@ tool for fuzzing websites
 * The target address is http or https
 # Changes in the latest version
 * Add new options
-*Fix bugs
+* Fix bugs

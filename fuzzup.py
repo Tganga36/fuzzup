@@ -41,8 +41,8 @@ def fuzzing():
                 file301 = open('Result-301.txt' , 'a')
                 file301.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
-            
-                fileorder = open('Result-order.txt' , 'a')
+            else:
+                fileorder = open('fileorder.txt' , 'a')
                 fileorder.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
         elif save == 'Y' or save == 'y':

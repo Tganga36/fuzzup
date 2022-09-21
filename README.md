@@ -1,4 +1,4 @@
-# fuzzup Version 1.0
+# fuzzup Version 1.1
 
 tool for fuzzing websites 
 
@@ -20,3 +20,7 @@ tool for fuzzing websites
 
 * Do not use the sign / at the end of the target address
 * The target address is http or https
+
+# Changes in the latest version
+
+*Fix bugs

@@ -29,37 +29,34 @@ def fuzzing():
             fuz = address + '/' + line
         fuzz = requests.get(fuz)
         if save == 'FY' or save == 'fy':
+            file200 = open('Result-200.txt' , 'a')
+            file404 = open('Result-404.txt' , 'a')
+            file301 = open('Result-301.txt' , 'a')
+            fileorder = open('fileorder.txt' , 'a')
             if fuzz.status_code == 200:
-                file200 = open('Result-200.txt' , 'a')
                 file200.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
             elif fuzz.status_code == 404:
-                file404 = open('Result-404.txt' , 'a')
                 file404.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
             elif fuzz.status_code == 301:
-                file301 = open('Result-301.txt' , 'a')
                 file301.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
             else:
-                fileorder = open('fileorder.txt' , 'a')
                 fileorder.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
         elif save == 'Y' or save == 'y':
+            fileResult = open('Result.txt' , 'a')
             if fuzz.status_code == 200:
-                fileResult = open('Result.txt' , 'a')
                 fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
             elif fuzz.status_code == 404:
-                fileResult = open('Result.txt' , 'a')
                 fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
             elif fuzz.status_code == 301:
-                fileResult = open('Result.txt' , 'a')
                 fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
             else:
-                fileResult = open('Result.txt' , 'a')
                 fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
                 print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
         elif save == 'n' or 'N':

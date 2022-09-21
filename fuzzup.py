@@ -1,10 +1,10 @@
 from audioop import add
 import sys , requests
-from urllib.parse import urlparse
+import urllib.request
 from typing import final
 from colorama import Fore
 print()
-print(Fore.LIGHTYELLOW_EX + '[#]'+ Fore.LIGHTWHITE_EX+' created by mrhack125 ... Version = 1.1')
+print(Fore.LIGHTYELLOW_EX + '[#]'+ Fore.LIGHTWHITE_EX+' created by mrhack125 ... Version = 1.5')
 print()
 address = sys.argv[1]
 if address == '-h':
@@ -18,6 +18,7 @@ if address == '-h':
     sys.exit()
 wordlist = sys.argv[2]    
 check = requests.get(address)
+options = sys.argv[3]
 def fuzzing():
     print()
     save = input(Fore.LIGHTYELLOW_EX + '[?]' + Fore.LIGHTWHITE_EX + 'Do you like Save it ? (Y , N , FY)' + Fore.LIGHTWHITE_EX)
@@ -28,48 +29,107 @@ def fuzzing():
         else:
             fuz = address + '/' + line
         fuzz = requests.get(fuz)
-        if save == 'FY' or save == 'fy':
-            if fuzz.status_code == 200:
-                file200 = open('Result-200.txt' , 'a')
-                file200.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
-                print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
-            elif fuzz.status_code == 404:
-                file404 = open('Result-404.txt' , 'a')
-                file404.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
-                print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
-            elif fuzz.status_code == 301:
-                file301 = open('Result-301.txt' , 'a')
-                file301.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
-                print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+        if options == 'normal':
+            if save == 'FY' or save == 'fy':
+                if fuzz.status_code == 200:
+                    file200 = open('Result-200.txt' , 'a')
+                    file200.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
+                elif fuzz.status_code == 404:
+                    file404 = open('Result-404.txt' , 'a')
+                    file404.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
+                elif fuzz.status_code == 301:
+                    file301 = open('Result-301.txt' , 'a')
+                    file301.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+                else:
+                    fileorder = open('fileorder.txt' , 'a')
+                    fileorder.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+            elif save == 'Y' or save == 'y':
+                fileResult = open('Result.txt' , 'a')
+                if fuzz.status_code == 200:
+                    fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
+                elif fuzz.status_code == 404:
+                    fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
+                elif fuzz.status_code == 301:
+                    fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+                else:
+                    fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+            elif save == 'n' or save == 'N':
+                if fuzz.status_code == 200:
+                    print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
+                elif fuzz.status_code == 404:
+                    print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
+                elif fuzz.status_code == 301:
+                    print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+                else:
+                    print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
             else:
-                fileorder = open('fileorder.txt' , 'a')
-                fileorder.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
-                print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
-        elif save == 'Y' or save == 'y':
-            fileResult = open('Result.txt' , 'a')
-            if fuzz.status_code == 200:
-                fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
-                print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
-            elif fuzz.status_code == 404:
-                fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
-                print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
-            elif fuzz.status_code == 301:
-                fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
-                print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+                print()
+                print(Fore.LIGHTRED_EX + '[$]' +Fore.LIGHTWHITE_EX +'please select one option')
+                fuzzing()
+    
+        elif options == 'dir':
+            if save == 'FY' or save == 'fy':
+                if fuzz.status_code == 200:
+                    url = urllib.request.urlopen(fuz)
+                    url_sec = str(url.read())
+                    if 'Index of' in url_sec:
+                        file200 = open('Result-dir-200.txt' , 'a')
+                        file200.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                        print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
+                    else:
+                        pass
+                elif fuzz.status_code == 404:
+                    file404 = open('Result-dir-404.txt' , 'a')
+                    file404.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
+                else:
+                    file404 = open('Result-dir-404.txt' , 'a')
+                    file404.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTYELLOW_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+            elif save == 'Y' or save == 'y':
+                fileResult = open('Result-dir.txt' , 'a')
+                if fuzz.status_code == 200:
+                    url = urllib.request.urlopen(fuz)
+                    url_sec = str(url.read())
+                    if 'Index of' in url_sec:
+                        fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                        print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
+                    else:
+                        pass
+                elif fuzz.status_code == 404:
+                    fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
+                else:
+                    fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
+                    print(Fore.LIGHTYELLOW_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+            elif save == 'n' or save == 'N':
+                if fuzz.status_code == 200:
+                    url = urllib.request.urlopen(fuz)
+                    url_sec = str(url.read())
+                    if 'Index of' in url_sec:
+                        print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
+                    else:
+                        pass
+                elif fuzz.status_code == 404:
+                    print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
+                else:
+                    print(Fore.LIGHTYELLOW_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
             else:
-                fileResult.write(f'[+] {fuz} | {str(fuzz.status_code)}\n')
-                print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
-        elif save == 'n' or 'N':
-            if fuzz.status_code == 200:
-                print(Fore.LIGHTGREEN_EX + '[+] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.GREEN + str(fuzz.status_code))
-            elif fuzz.status_code == 404:
-                print(Fore.LIGHTRED_EX + '[$] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.RED + str(fuzz.status_code))
-            elif fuzz.status_code == 301:
-                print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
-            else:
-                print(Fore.LIGHTYELLOW_EX + '[!] ' + Fore.LIGHTWHITE_EX + fuz + '|' + Fore.YELLOW + str(fuzz.status_code))
+                print()
+                print(Fore.LIGHTRED_EX + '[$]' +Fore.LIGHTWHITE_EX +'please select one option')
+                fuzzing()
         else:
             print()
-            print(Fore.LIGHTRED_EX + '[$]' +Fore.LIGHTWHITE_EX +'please select one option')
-            fuzzing()
+            print(Fore.LIGHTRED_EX + '[!] Your option is mistake')
+            print()
+            sys.exit()
+
 fuzzing()

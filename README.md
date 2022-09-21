@@ -1,4 +1,4 @@
-# fuzzup Version 1.1
+# fuzzup Version 1.5
 
 tool for fuzzing websites 
 

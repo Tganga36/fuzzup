@@ -4,7 +4,7 @@ import urllib.request
 from typing import final
 from colorama import Fore
 print()
-print(Fore.LIGHTYELLOW_EX + '[#]'+ Fore.LIGHTWHITE_EX+' created by mrhack125 ... Version = 1.5')
+print(Fore.LIGHTYELLOW_EX + '[#]'+ Fore.LIGHTWHITE_EX+' created by Tganga36 ... Version = 1.5')
 print()
 address = sys.argv[1]
 if address == '-h':

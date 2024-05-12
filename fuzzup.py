@@ -1,4 +1,3 @@
-from audioop import add
 import sys , requests
 import urllib.request
 from typing import final
@@ -6,7 +5,11 @@ from colorama import Fore
 print()
 print(Fore.LIGHTYELLOW_EX + '[#]'+ Fore.LIGHTWHITE_EX+' created by Tganga36 ... Version = 1.5')
 print()
-address = sys.argv[1]
+try:
+    address = sys.argv[1]
+except:
+    print("please enter valid url or -h")
+    sys.exit();
 if address == '-h':
     print()
     print('''help:
@@ -20,9 +23,27 @@ if address == '-h':
                 normal = normal Fuzzing''') 
     print()
     sys.exit()
-wordlist = sys.argv[2]    
+try:
+    wordlist = sys.argv[2]
+    if("/" not in wordlist):
+        try:
+            options = sys.argv[2]
+        except:
+            options = "normal"
+        wordlist = "wordlist/wordlist.txt"
+    else:
+        try:
+            options = sys.argv[3]
+        except:
+            options = "normal"
+except:
+    wordlist = "wordlist/wordlist.txt"
+    try:
+        options = sys.argv[2]
+    except:
+        options = "normal"
+    pass    
 check = requests.get(address)
-options = sys.argv[3]
 def fuzzing():
     print()
     save = input(Fore.LIGHTYELLOW_EX + '[?]' + Fore.LIGHTWHITE_EX + 'Do you like Save it ? (Y , N , FY)' + Fore.LIGHTWHITE_EX)
